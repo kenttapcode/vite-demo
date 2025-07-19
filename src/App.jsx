@@ -15,7 +15,9 @@ const App = () => {
   const data = { adress: "HCM", country: "VN" }
 
   const AddNewTodo = (name) => {
-    alert(`Call me ${name}`)
+    const maxId = TodoList.length > 0 ? Math.max(...TodoList.map(todo => todo.id)) : 0;
+    const newTodo = { id: maxId + 1, name: name }
+    setTodoList([...TodoList, newTodo])
   }
   return (
     <div className='todo-container'>

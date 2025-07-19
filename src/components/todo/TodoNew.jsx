@@ -7,9 +7,8 @@ const TodoNew = (props) => {
     const { AddNewTodo } = props;
     // AddNewTodo('Quoc')
     const handleClick = () => {
-        console.log("Check gia tri", valueInput)
+        AddNewTodo(valueInput)
     }
-
     const hanldeOnChange = (name) => {
         setValueInput(name)
     }
