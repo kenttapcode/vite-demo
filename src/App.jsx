@@ -19,10 +19,14 @@ const App = () => {
         Todo App
       </div>
       <TodoNew AddNewTodo={AddNewTodo} />
-      <TodoData TodoList={TodoList} />
-      <div className='todo-image logo'>
-        <img src={Reactlogo} />
-      </div>
+
+      {TodoList.length > 0 ?
+        <TodoData TodoList={TodoList} />
+        :
+        <div className='todo-image logo'>
+          <img src={Reactlogo} />
+        </div>
+      }
     </div>
   )
 }
