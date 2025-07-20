@@ -5,14 +5,12 @@ const TodoData = (props) => {
         <div className='todo-data'>
             {TodoList.map((item, index) => {
                 return (
-                    <div className="todo-item">
+                    <div className="todo-item" key={item.id}>
                         <div>{item.name}</div>
                         <button>Delete</button>
                     </div>
                 )
             })}
-            <div>Learning React {JSON.stringify(TodoList)}</div>
-            <div>{JSON.stringify(props.TodoList)}</div>
         </div>
     )
 }

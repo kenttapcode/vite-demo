@@ -6,13 +6,7 @@ import { useState } from 'react'
 
 const App = () => {
 
-  const [TodoList, setTodoList] = useState([
-    { id: 1, name: "Learning" },
-    { id: 2, name: "Watch movie" }
-  ])
-  const name = "Quoc"
-  const age = 29;
-  const data = { adress: "HCM", country: "VN" }
+  const [TodoList, setTodoList] = useState([])
 
   const AddNewTodo = (name) => {
     const maxId = TodoList.length > 0 ? Math.max(...TodoList.map(todo => todo.id)) : 0;
@@ -25,7 +19,7 @@ const App = () => {
         Todo App
       </div>
       <TodoNew AddNewTodo={AddNewTodo} />
-      <TodoData name={name} age={age} data={data} TodoList={TodoList} />
+      <TodoData TodoList={TodoList} />
       <div className='todo-image logo'>
         <img src={Reactlogo} />
       </div>
