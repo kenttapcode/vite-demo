@@ -13,6 +13,13 @@ const App = () => {
     const newTodo = { id: maxId + 1, name: name }
     setTodoList([...TodoList, newTodo])
   }
+
+
+  const deleteTodo = (id) => {
+    const newTodoDelete = TodoList.filter((item) => item.id !== id)
+    setTodoList(newTodoDelete)
+  }
+
   return (
     <div className='todo-container'>
       <div className='todo-title'>
@@ -21,7 +28,7 @@ const App = () => {
       <TodoNew AddNewTodo={AddNewTodo} />
 
       {TodoList.length > 0 ?
-        <TodoData TodoList={TodoList} />
+        <TodoData TodoList={TodoList} setTodoList={setTodoList} deleteTodo={deleteTodo} />
         :
         <div className='todo-image logo'>
           <img src={Reactlogo} />
