@@ -8,13 +8,14 @@ const TodoNew = (props) => {
     // AddNewTodo('Quoc')
     const handleClick = () => {
         AddNewTodo(valueInput)
+        setValueInput("")
     }
     const hanldeOnChange = (name) => {
         setValueInput(name)
     }
     return (
         <div className='todo-new'>
-            <input type='text' onChange={(e) => hanldeOnChange(e.target.value)} />
+            <input type='text' value={valueInput} onChange={(e) => hanldeOnChange(e.target.value)} />
             <button onClick={handleClick}>Add</button>
             <div>Gia tri input: {valueInput}</div>
         </div>
