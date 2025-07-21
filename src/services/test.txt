@@ -1,2 +1,4 @@
 kenttapcode
 jlzYGEZrk1ydw26y
+
+mongodb+srv://kenttapcode:jlzYGEZrk1ydw26y@cluster0.mjy96nl.mongodb.net/
