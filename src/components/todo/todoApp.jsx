@@ -4,7 +4,7 @@ import TodoNew from './TodoNew'
 import Reactlogo from '../../assets/react.svg'
 import { useState } from 'react'
 
-const todoApp = () => {
+const TodoApp = () => {
 
     const [TodoList, setTodoList] = useState([])
 
@@ -37,4 +37,4 @@ const todoApp = () => {
     )
 }
 
-export default todoApp;
+export default TodoApp;
