@@ -3,7 +3,8 @@ import { useState } from "react";
 import { createUserAPI } from "../../services/api.services";
 import Modal from "antd/es/modal/Modal";
 
-const UserForm = () => {
+const UserForm = (props) => {
+    const { loadUser } = props;
 
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -18,8 +19,18 @@ const UserForm = () => {
                 message: 'Create User',
                 description: 'Tạo mới user thành công'
             })
-            setIsModalOpen(false)
         }
+        resetCloseModal()
+        await loadUser();
+
+    }
+
+    const resetCloseModal = () => {
+        setIsModalOpen(false)
+        setFullName('')
+        setEmail('')
+        setPassword('')
+        setPhone('')
 
     }
     return (
@@ -31,7 +42,7 @@ const UserForm = () => {
                 </div>
             </div>
             <Modal title="Create New User" okText="Create" open={isModalOpen} onOk={handleClickUser}
-                onCancel={() => setIsModalOpen(false)}>
+                onCancel={() => resetCloseModal()}>
                 <div>
                     <span>Fullname</span>
                     <Input style={{ height: "30px", marginBottom: "10px" }} value={fullName} onChange={(e) => setFullName(e.target.value)} />

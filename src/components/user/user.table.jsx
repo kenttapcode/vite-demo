@@ -1,18 +1,9 @@
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Space, Table, Tag } from 'antd';
-import { FetchAllUserAPI } from '../../services/api.services';
-import { useEffect, useState } from 'react';
+import UpdateUserModal from './update.user.modal';
 
-const UserTable = () => {
-
-    const [dataUsers, setDataUsers] = useState([]);
-
-    const loadUser = async () => {
-        const res = await FetchAllUserAPI();
-        setDataUsers(res.data)
-    }
-
-    useEffect(() => { loadUser() }, [dataUsers]);
-
+const UserTable = (props) => {
+    const { dataUsers } = props;
     const columns = [
         {
             title: 'ID',
@@ -34,11 +25,23 @@ const UserTable = () => {
             dataIndex: 'phone',
             key: 'phone',
         },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_, record) => (
+                <Space size="middle">
+                    <a><EditOutlined /></a>
+                    <a><DeleteOutlined /></a>
+                </Space>
+            ),
+        },
     ];
 
-
     return (
-        <Table columns={columns} dataSource={dataUsers} />
+        <>
+            <Table columns={columns} dataSource={dataUsers} />
+            <UpdateUserModal />
+        </>
     )
 }
 
