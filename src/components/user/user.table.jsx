@@ -1,9 +1,10 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Space, Table, Tag } from 'antd';
+import { notification, Space, Table, Tag } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useEffect, useState } from 'react';
 import { showUserAPI } from "../../services/api.services";
 import ShowUserModal from './show.user.modal';
+import { deleteUserAPI } from '../../services/api.services';
 
 const UserTable = (props) => {
     const [isModalUpdate, setIsModalUpdate] = useState(false)
@@ -14,14 +15,25 @@ const UserTable = (props) => {
 
     const [dataUserShow, setDataUserShow] = useState(null);
 
-    const handleClickShow = async (text) => {
-        const res = await showUserAPI(text);
+    const handleClickShow = async (id) => {
+        const res = await showUserAPI(id);
         setDataUserShow(res.data)
         console.log("load data show", dataUserShow)
         setIsModalShow(true)
     }
 
-    // useEffect(() => { handleClickShow() }, [dataUserShow]);
+    const handleClickDelete = async (id) => {
+        const res = await deleteUserAPI(id);
+        if (res && res.data) {
+            notification.success({
+                message: 'Delete User',
+                description: 'Xoá user thành công'
+            })
+        }
+        console.log("delete USER", id)
+    }
+
+    useEffect(() => { loadUser() }, [dataUsers]);
     const columns = [
         {
             title: 'ID',
@@ -54,7 +66,7 @@ const UserTable = (props) => {
                         setIsModalUpdate(true)
                     }
                     } /></a>
-                    <a><DeleteOutlined /></a>
+                    <a><DeleteOutlined onClick={() => handleClickDelete(record.id)} /></a>
                 </Space>
             ),
         },
