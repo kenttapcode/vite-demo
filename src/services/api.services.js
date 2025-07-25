@@ -12,8 +12,17 @@ const createUserAPI = (fullName, email, password, phone) => {
     return axios.post(URL_BACKEND, data);
 }
 
-const updateUserAPI = () => {
+const updateUserAPI = (id, fullName, email, password, phone) => {
 
+    const URL_BACKEND = 'https://687e66a6efe65e5200869488.mockapi.io/testuser/' + id;
+    const data = {
+        fullName: fullName,
+        email: email,
+        password: password,
+        phone: phone
+    }
+    console.log(URL_BACKEND)
+    return axios.put(URL_BACKEND, data);
 }
 
 const deleteUserAPI = () => {
