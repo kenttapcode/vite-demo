@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { notification, Space, Table, Tag } from 'antd';
+import { message, notification, Popconfirm, Space, Table, Tag } from 'antd';
 import UpdateUserModal from './update.user.modal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { showUserAPI } from "../../services/api.services";
 import ShowUserModal from './show.user.modal';
 import { deleteUserAPI } from '../../services/api.services';
@@ -30,10 +30,18 @@ const UserTable = (props) => {
                 description: 'Xoá user thành công'
             })
         }
-        console.log("delete USER", id)
+        await loadUser();
     }
 
-    useEffect(() => { loadUser() }, [dataUsers]);
+    const handleConfirm = (id) => {
+        handleClickDelete(id)
+    }
+
+    const handleCancel = (e) => {
+        message.error('Cancel')
+    }
+
+    // useEffect(() => { loadUser() }, [dataUsers]);
     const columns = [
         {
             title: 'ID',
@@ -66,7 +74,17 @@ const UserTable = (props) => {
                         setIsModalUpdate(true)
                     }
                     } /></a>
-                    <a><DeleteOutlined onClick={() => handleClickDelete(record.id)} /></a>
+                    <a>
+                        <Popconfirm
+                            title="Delete the User"
+                            description="Are you sure to delete this user?"
+                            onConfirm={() => handleConfirm(record.id)}
+                            onCancel={handleCancel}
+                            okText="Yes"
+                            cancelText="No">
+                            <DeleteOutlined />
+                        </Popconfirm>
+                    </a>
                 </Space>
             ),
         },
