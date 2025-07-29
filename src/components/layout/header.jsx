@@ -1,9 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { HomeOutlined, UserOutlined, BookOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 const Header = () => {
+
+    const { user } = useContext(AuthContext);
+    console.log('test header', user)
+    console.log(user)
     const [current, setCurrent] = useState('home');
     const onClick = e => {
         console.log('click ', e);

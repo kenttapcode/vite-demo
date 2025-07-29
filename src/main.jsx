@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './styles/global.css'
+import { WrapUser } from './components/context/auth.context.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -30,21 +31,21 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <UserPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
       }
     ]
   },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  }
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <WrapUser>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </WrapUser>,
 )
