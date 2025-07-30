@@ -13,6 +13,7 @@ import BookPage from './pages/book.jsx';
 import UserPage from './pages/user.jsx';
 import TodoApp from './components/todo/todoApp.jsx';
 import ErrorPage from './pages/error.jsx';
+import PriveRoute from './pages/private.route.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <BookPage />,
+        element: <PriveRoute><BookPage /></PriveRoute>,
       },
       {
         path: "/users",
