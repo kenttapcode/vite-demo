@@ -1,10 +1,14 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import { HomeOutlined, UserOutlined, BookOutlined, UserAddOutlined, LoginOutlined, AliwangwangOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
+import { useLocale } from 'antd/es/locale';
 
 const Header = () => {
+
+    const localtion = useLocale();
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     console.log('test header', user)
     console.log(user)
@@ -40,7 +44,7 @@ const Header = () => {
             icon: <AliwangwangOutlined />,
             children: [
                 {
-                    label: <p onClick={() => { localStorage.removeItem('access_token') }}>Đăng xuất</p>,
+                    label: <p onClick={() => { localStorage.removeItem('access_token'); navigate('/') }}>Đăng xuất</p>,
                     key: 'logout',
                 },
             ],

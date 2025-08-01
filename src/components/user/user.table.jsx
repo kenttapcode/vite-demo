@@ -11,7 +11,7 @@ const UserTable = (props) => {
     const [isModalShow, setIsModalShow] = useState(false)
     const [dataUpdate, setDataUpdate] = useState(null)
 
-    const { dataUsers, loadUser } = props;
+    const { dataUsers, loadUser, loadingTable } = props;
 
     const [dataUserShow, setDataUserShow] = useState(null);
 
@@ -92,7 +92,7 @@ const UserTable = (props) => {
 
     return (
         <>
-            <Table columns={columns} dataSource={dataUsers} />
+            <Table columns={columns} dataSource={dataUsers} loading={loadingTable} />
             <UpdateUserModal isModalUpdate={isModalUpdate} setIsModalUpdate={setIsModalUpdate} dataUpdate={dataUpdate} setDataUpdate={setDataUpdate} loadUser={loadUser} />
             <ShowUserModal isModalShow={isModalShow} setIsModalShow={setIsModalShow} dataUserShow={dataUserShow} setDataUserShow={setDataUserShow} handleClickShow={handleClickShow} />
         </>

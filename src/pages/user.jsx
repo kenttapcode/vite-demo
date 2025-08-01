@@ -6,9 +6,12 @@ import { FetchAllUserAPI } from '../services/api.services';
 const UserPage = () => {
     const [dataUsers, setDataUsers] = useState([]);
 
+    const [loadingTable, setLoadingTable] = useState(false)
     const loadUser = async () => {
+        setLoadingTable(true)
         const res = await FetchAllUserAPI();
         setDataUsers(res.data)
+        setLoadingTable(false)
         console.log("load data")
     }
 
@@ -16,7 +19,7 @@ const UserPage = () => {
     return (
         <div style={{ margin: "15px" }}>
             <UserForm loadUser={loadUser} />
-            <UserTable dataUsers={dataUsers} loadUser={loadUser} />
+            <UserTable dataUsers={dataUsers} loadUser={loadUser} loadingTable={loadingTable} />
         </div>
     )
 }
